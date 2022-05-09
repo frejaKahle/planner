@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/css/style.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <title>Planner</title>
+</head>
+
+<body>
+    <section class="primary-content" style="order: 1">
+        <section class="todo" style="order: 1">
+            <h1>To Do List</h1>
+            <div class="tabs">
+                <button class="tab active" onclick="switchTodoTab(this)">All</button>
+                <button class="tab" onclick="switchTodoTab(this)">Homework</button>
+                <button class="tab" onclick="switchTodoTab(this)">Coding</button>
+            </div>
+            <div class="list"></div>
+        </section>
+        <section class="calendar">
+            <h1>Calendar</h1>
+            <div class="week last-week">
+                <p>W1</p>
+            </div>
+            <div class="week this-week">
+                <p>W2</p>
+            </div>
+            <div class="week next-week">
+                <p>W3</p>
+            </div>
+        </section>
+
+    </section>
+    <section class="secondary-content">
+        <section class="date-display">
+            <h3>17:00</h3>
+            <h1>Monday</h1>
+            <h1 id="month">, May 9</h1>
+        </section>
+        <section class="search-bar">
+            <form>
+                <label for="search">Google Search:</label>
+                <input id="search" type="text">
+            </form>
+        </section>
+    </section>
+
+</body>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/todo.js"></script>
+
+</html>

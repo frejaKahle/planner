@@ -1,0 +1,53 @@
+$screen-size-phone: 425px;
+$screen-size-tablet: 768px;
+$screen-size-laptop: 1024px;
+$screen-size-large: 1440px;
+$screen-size-4k: 2560px;
+@mixin sizeAndUp($size) {
+    @media only screen and (min-width: $size) {
+        @content
+    }
+}
+
+@mixin belowSize($size) {
+    @media only screen and (max-width: ($size - 1)) {
+        @content
+    }
+}
+
+:root {
+    --background-color: #fff;
+    --text-color: #000;
+    --border-color: #80808080;
+    --rule-color: orangered;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+@for $i from 1 through 6 {
+    h#{7-$i} {
+        font-size: ($i / 3 + 1) * 1em;
+        font-weight: 325;
+        background: none;
+        border-radius: 0;
+    }
+}

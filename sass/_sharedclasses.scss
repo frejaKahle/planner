@@ -1,0 +1,54 @@
+section {
+    flex-grow: 1;
+    min-height: 2rem;
+    body>& {
+        @include sizeAndUp($screen-size-laptop) {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    &.primary-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap-reverse;
+        align-items: center;
+        .sco & {
+            display: none;
+        }
+        &>section {
+            min-height: 40vh;
+            max-height: 60vh;
+            &>h1::after {
+                display: block;
+                align-self: center;
+                content: "";
+                border-top: 1px solid var(--rule-color);
+                width: calc(100% - 0.7rem);
+                margin: 0 0.35rem;
+            }
+        }
+    }
+    &.secondary-content {
+        display: flex;
+        flex-direction: column;
+        .pco & {
+            display: none;
+        }
+    }
+    &>section {
+        padding: 1rem;
+        margin: 0.5rem;
+        @extend %rounded;
+    }
+}
+
+%rounded {
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+button {
+    min-width: 40px;
+    min-height: 40px;
+}

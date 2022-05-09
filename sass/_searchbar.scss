@@ -1,0 +1,12 @@
+section.search-bar {
+    min-height: 2rem;
+    form {
+        font-size: 2rem;
+        input[type="text"] {
+            @extend %rounded;
+            padding: 0rem 0.5rem;
+            font-size: 2rem;
+            width: calc(100% - 16rem);
+        }
+    }
+}
