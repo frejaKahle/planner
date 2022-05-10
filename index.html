@@ -20,6 +20,21 @@
                 <button class="tab" onclick="switchTodoTab(this)">Coding</button>
             </div>
             <div class="list"></div>
+            <div class="popup">
+                <h1>Add a To Do list item</h1>
+                <form>
+                    <label for="todo--name">Item Name:</label>
+                    <input type="text" id="todo--name" placeholder="Enter Item's Name">
+                    <br>
+                    <label for="todo--list">List to add to:</label>
+                    <input type="text" id="todo--list" placeholder="Default">
+                    <br>
+                    <button class="cancel" onclick="this.parentElement.parentElement.classList.remove('active')"></button>
+                    <button class="addItem"></button>
+                </form>
+
+            </div>
+            <button class="addItem" onclick="this.parentElement.querySelector('.popup').classList.add('active');"></button>
         </section>
         <section class="calendar">
             <h1>Calendar</h1>
@@ -32,6 +47,29 @@
             <div class="week next-week">
                 <p>W3</p>
             </div>
+            <div class="popup">
+                <h1>Add a calendar entry</h1>
+                <form>
+                    <label for="cal--name">Item Name:</label>
+                    <input type="text" id="cal--name" placeholder="Enter Item's Name">
+                    <br>
+                    <label for="cal--tStart">Begin Date:</label>
+                    <input type="date" id="cal--tStart">
+                    <br>
+                    <label for="cal--tEnd">End Date:</label>
+                    <input type="date" id="cal--tEnd">
+                    <label for="cal--due">Has Only End Time:</label>
+                    <input type="checkbox" id="cal--due">
+                    <br>
+                    <label for="cal-addToTodo">Add To Todo (empty for no):</label>
+                    <input type="text" id="cal--addToTodo">
+                    <br>
+                    <button class="cancel" onclick="this.parentElement.parentElement.classList.remove('active')"></button>
+                    <button class="addItem"></button>
+                </form>
+
+            </div>
+            <button class="addItem" onclick="this.parentElement.querySelector('.popup').classList.add('active');"></button>
         </section>
 
     </section>

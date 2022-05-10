@@ -28,6 +28,20 @@ section {
                 margin: 0 0.35rem;
             }
         }
+        button {
+            @extend %rounded;
+            padding: 0.25rem;
+            &.addItem {
+                margin-top: 1rem;
+                background-color: var(--border-color);
+                color: var(--text-color);
+                align-self: flex-end;
+                margin-top: auto;
+                &::after {
+                    content: '+';
+                }
+            }
+        }
     }
     &.secondary-content {
         display: flex;
@@ -51,4 +65,88 @@ section {
 button {
     min-width: 40px;
     min-height: 40px;
+}
+
+.popup {
+    font-size: 0;
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    &::after {
+        position: absolute;
+        display: block;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.965;
+        content: '';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        height: 100vh;
+        transition: backdrop-filter 0.2s linear, background-color 0.3s linear;
+        backdrop-filter: none;
+    }
+    &::before {
+        content: '';
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-color);
+        position: absolute;
+        z-index: 1;
+        padding: 0.5rem;
+        top: -0.5rem;
+        left: -0.5rem;
+        @extend %rounded;
+        border-color: var(--text-color);
+    }
+    &.active {
+        border-color: var(--text-color);
+        font-size: 1em;
+        width: auto;
+        height: auto;
+        z-index: 100;
+        &::after {
+            pointer-events: auto;
+            z-index: -2;
+            background-color: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px) grayscale(50%);
+        }
+        &::before {
+            display: block;
+        }
+        form {
+            display: block;
+        }
+    }
+    &>* {
+        position: relative;
+        z-index: 100;
+    }
+    form {
+        display: none;
+        button {
+            &.cancel {
+                margin-top: 1rem;
+                background-color: var(--cancel-button-color);
+                color: var(--text-color);
+                &::after {
+                    content: 'Cancel';
+                }
+            }
+            &.addItem {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: var(--add-button-color);
+                &::after {
+                    content: '+';
+                }
+            }
+        }
+    }
 }

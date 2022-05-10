@@ -1,5 +1,7 @@
 section.calendar {
     min-width: 60%;
+    display: flex;
+    flex-direction: column;
     .week {
         &:first-of-type,
         &:last-of-type {
