@@ -1,12 +1,23 @@
 section.search-bar {
     min-height: 2rem;
     form {
+        display: flex;
+        flex-wrap: wrap;
         font-size: 2rem;
+        label {
+            flex: 0 0 auto;
+            align-self: center;
+        }
         input[type="text"] {
             @extend %rounded;
             padding: 0rem 0.5rem;
+            max-width: calc(100% - 1rem);
+            margin: 0 0.5rem;
             font-size: 2rem;
-            width: calc(100% - 16rem);
+            height: calc(1em + 1rem);
+            flex: 1 1;
+            margin-right: 0;
+            align-self: center;
         }
     }
 }

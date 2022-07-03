@@ -1,14 +1,13 @@
 section.date-display {
     min-height: 12rem;
-    max-height: 15rem;
-    font-size: 200%;
-    h1 {
-        display: inline;
-        white-space: nowrap;
-        &#month {
-            @include belowSize(1144px) {
-                display: none;
-            }
+    max-height: 18rem;
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    @include sizeAndUp($screen-size-phone) {
+        font-size: 150%;
+        @include sizeAndUp($screen-size-large) {
+            font-size: 200%;
         }
     }
 }

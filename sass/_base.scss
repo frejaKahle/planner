@@ -9,12 +9,14 @@ $screen-size-4k: 2560px;
     }
 }
 
+;
 @mixin belowSize($size) {
     @media only screen and (max-width: ($size - 1)) {
         @content
     }
 }
 
+;
 :root {
     --background-color: #fff;
     --text-color: #000;
@@ -24,6 +26,19 @@ $screen-size-4k: 2560px;
     --add-button-color: #40df40;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
+    @include sizeAndUp($screen-size-laptop) {
+        font-size: 18px;
+        @include sizeAndUp(($screen-size-large + $screen-size-4k) * 0.5) {
+            font-size: 24px;
+        }
+    }
+}
+
+%buttonsize {
+    min-height: 40px;
+    min-width: 40px;
+    height: 40px;
+    width: 40px;
 }
 
 * {

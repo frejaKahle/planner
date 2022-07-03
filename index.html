@@ -13,45 +13,56 @@
 <body>
     <section class="primary-content" style="order: 1">
         <section class="todo" style="order: 1">
-            <h1>To Do List</h1>
-            <div class="tabs">
-                <button class="tab active" onclick="switchTodoTab(this)">All</button>
-                <button class="tab" onclick="switchTodoTab(this)">Homework</button>
-                <button class="tab" onclick="switchTodoTab(this)">Coding</button>
+            <div class="topstick">
+                <h1>To Do List <button class="addItem" onclick="document.querySelector('.primary-content .todo .popup#td-list').classList.add('active');"></button></h1>
+                <div class="tabs"></div>
             </div>
             <div class="list"></div>
-            <div class="popup">
-                <h1>Add a To Do list item</h1>
+            <div class="popup" id="td-item">
+                <h1>Add a To-Do Item</h1>
                 <form>
+                    <label for="todo--name">List Name:</label>
+                    <input type="text" id="todo--item--list" name="listname" disabled>
+                    <br>
                     <label for="todo--name">Item Name:</label>
-                    <input type="text" id="todo--name" placeholder="Enter Item's Name">
+                    <input type="text" id="todo--item--name" placeholder="Enter Item's Name" autocomplete="off" name="itemname">
                     <br>
-                    <label for="todo--list">List to add to:</label>
-                    <input type="text" id="todo--list" placeholder="Default">
-                    <br>
-                    <button class="cancel" onclick="this.parentElement.parentElement.classList.remove('active')"></button>
-                    <button class="addItem"></button>
+                    <button class="cancel" onclick="closePopup()"></button>
+                    <button class="addItem" onclick=" "></button>
                 </form>
 
             </div>
-            <button class="addItem" onclick="this.parentElement.querySelector('.popup').classList.add('active');"></button>
+            <div class="popup" id="td-list">
+                <h1>Add a To-Do List</h1>
+                <form>
+                    <label for="todo--create--list">List Name:</label>
+                    <input type="text" id="todo--create--list" placeholder="Enter Item's Name" autocomplete="off" name="listname">
+                    <br>
+                    <label for="todo--create--order">Tab Position:</label>
+                    <input type="number" id="todo--create--order" min="0" placeholder="0 &#8594; &#8734;" autocomplete="off" name="order">
+                    <br>
+                    <button class="cancel" onclick="closePopup()"></button>
+                    <button class="addItem" onclick=" "></button>
+                </form>
+
+            </div>
         </section>
-        <section class="calendar">
+        <section class="calendar ">
             <h1>Calendar</h1>
-            <div class="week last-week">
+            <div class="week last-week ">
                 <p>W1</p>
             </div>
-            <div class="week this-week">
+            <div class="week this-week ">
                 <p>W2</p>
             </div>
-            <div class="week next-week">
+            <div class="week next-week ">
                 <p>W3</p>
             </div>
             <div class="popup">
                 <h1>Add a calendar entry</h1>
                 <form>
-                    <label for="cal--name">Item Name:</label>
-                    <input type="text" id="cal--name" placeholder="Enter Item's Name">
+                    <label for="cal--name ">Item Name:</label>
+                    <input type="text " id="cal--name " placeholder="Enter Item 's Name">
                     <br>
                     <label for="cal--tStart">Begin Date:</label>
                     <input type="date" id="cal--tStart">
@@ -69,26 +80,26 @@
                 </form>
 
             </div>
-            <button class="addItem" onclick="this.parentElement.querySelector('.popup').classList.add('active');"></button>
+            <button class="addItem" onclick="this.parentElement.querySelector('.popup ').classList.add('active');"></button>
         </section>
 
     </section>
     <section class="secondary-content">
         <section class="date-display">
-            <h3>17:00</h3>
-            <h1>Monday</h1>
-            <h1 id="month">, May 9</h1>
+            <h3></h3>
+            <h1></h1>
         </section>
         <section class="search-bar">
             <form>
                 <label for="search">Google Search:</label>
-                <input id="search" type="text">
+                <input id="search" type="text" autocomplete="off">
             </form>
         </section>
     </section>
 
 </body>
 <script type="text/javascript" src="js/util.js"></script>
-<script type="text/javascript" src="js/todo.js"></script>
+<script type="module" src="js/todo.js"></script>
+<script type="module" src="js/datedisp.js"></script>
 
 </html>

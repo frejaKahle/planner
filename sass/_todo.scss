@@ -3,15 +3,51 @@ section.todo {
     max-width: 100%;
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    @include belowSize($screen-size-phone) {
+        &>h1:first-child,
+        &>div:first-child>h1:first-child {
+            font-size: 36px;
+        }
+    }
+    div.topstick:first-of-type {
+        position: sticky;
+        z-index: 50;
+        top: 0;
+    }
+    h1 {
+        position: relative;
+        overflow: visible;
+        background-color: var(--background-color);
+        &::before {
+            position: absolute;
+            left: -1rem;
+            top: -1rem;
+            content: '';
+            z-index: -4;
+            width: calc(100% + 2rem);
+            height: calc(100% + 1rem);
+            background-color: var(--background-color);
+        }
+    }
     .tabs {
+        pointer-events: none;
+        position: relative;
         padding: 0 0.35em;
-        display: block;
+        display: flex;
+        min-height: 3rem;
+        margin-bottom: -0.75rem;
+        flex-direction: row;
         width: 100%;
-        height: 3em;
         overflow-x: auto;
         white-space: nowrap;
+        background: linear-gradient(var(--background-color) 2rem, transparent);
         .tab {
+            pointer-events: auto;
+            cursor: pointer;
             padding: 0.4em 0.25em;
+            margin-right: 0.25em;
+            flex: 0 0 auto;
             min-height: 1em;
             @extend %rounded;
             border-top: none;
@@ -20,9 +56,52 @@ section.todo {
             display: inline-flex;
             align-items: flex-start;
             justify-content: center;
+            align-self: flex-start;
             &.active {
                 border-color: var(--rule-color);
                 border-width: 1px;
+            }
+        }
+    }
+    .list {
+        position: relative;
+        pointer-events: none;
+        z-index: 30;
+        padding: 0.35em;
+        list-style-type: none;
+        pointer-events: none;
+        li {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0 0 0.35em 0;
+            input[type="checkbox"] {
+                pointer-events: auto;
+                --checkwidth: 0.4em;
+                position: relative;
+                z-index: -1;
+                @extend %buttonsize;
+                appearance: none;
+                @extend %rounded;
+                cursor: pointer;
+                margin-right: 0.5em;
+                &:checked {
+                    border: none;
+                    background-color: cornflowerblue;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        border: solid white;
+                        border-width: 0 var(--checkwidth) var(--checkwidth) 0;
+                        z-index: 1;
+                        top: 50%;
+                        left: 50%;
+                        width: 10px;
+                        height: 25px;
+                        transform: translate(-50%, calc(var(--checkwidth) * -0.352 - 50%)) rotate(40deg);
+                    }
+                }
             }
         }
     }

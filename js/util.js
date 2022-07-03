@@ -8,10 +8,6 @@ const setCssVar = (name, value) => {
     RE.style.setProperty('--'.concat('', name), value);
 };
 
-document.querySelectorAll("form").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        //processSubmission();
-    });
-})
-''
+document.closePopup = () => {
+    const popups = document.querySelectorAll(".popup").forEach(popup => popup.classList.remove('active'));
+};

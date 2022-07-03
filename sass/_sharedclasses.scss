@@ -17,9 +17,10 @@ section {
             display: none;
         }
         &>section {
+            position: relative;
             min-height: 40vh;
             max-height: 60vh;
-            &>h1::after {
+            h1::after {
                 display: block;
                 align-self: center;
                 content: "";
@@ -30,16 +31,32 @@ section {
         }
         button {
             @extend %rounded;
+            cursor: pointer;
             padding: 0.25rem;
+            align-self: flex-end;
+            justify-self: flex-end;
             &.addItem {
-                margin-top: 1rem;
-                background-color: var(--border-color);
-                color: var(--text-color);
-                align-self: flex-end;
+                position: sticky;
                 margin-top: auto;
+                z-index: -1;
+                bottom: 1rem;
+                right: 1rem;
+                background-color: var(--add-button-color);
+                filter: saturate(0.3) brightness(1.15);
+                color: var(--text-color);
                 &::after {
                     content: '+';
                 }
+            }
+        }
+        h1 {
+            position: relative;
+            button.addItem {
+                position: absolute;
+                z-index: 1;
+                margin-left: 0;
+                bottom: 0.75rem;
+                right: 0.35rem;
             }
         }
     }
@@ -80,14 +97,14 @@ button {
         display: block;
         pointer-events: none;
         z-index: -1;
-        opacity: 0.965;
+        opacity: 0.8;
         content: '';
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100vw;
         height: 100vh;
-        transition: backdrop-filter 0.2s linear, background-color 0.3s linear;
+        transition: backdrop-filter 0.3s linear, background-color 0.3s linear;
         backdrop-filter: none;
     }
     &::before {
@@ -113,7 +130,7 @@ button {
         &::after {
             pointer-events: auto;
             z-index: -2;
-            background-color: rgba(0, 0, 0, 0.25);
+            background-color: var(--border-color);
             backdrop-filter: blur(10px) grayscale(50%);
         }
         &::before {
@@ -127,8 +144,49 @@ button {
         position: relative;
         z-index: 100;
     }
+    h1 {
+        &::before,
+        &::after {
+            content: none !important;
+        }
+    }
+    .active h1 {
+        &::before,
+        &::after {
+            content: '' !important;
+        }
+        font-size: 18px;
+        @include sizeAndUp($screen-size-tablet) {
+            font-size: 35px;
+            @include sizeAndUp($screen-size-laptop) {
+                font-size: 46px;
+                @include sizeAndUp($screen-size-large) {
+                    font-size: 66px;
+                }
+            }
+        }
+    }
     form {
         display: none;
+        label,
+        input,
+        select,
+        textarea {
+            font-size: 1rem;
+        }
+        input {
+            margin-bottom: 0.5em;
+        }
+        input:not([type="checkbox"]) {
+            position: relative;
+            padding: 0.5em;
+            border-bottom: 1px solid var(--border-color);
+            background-color: transparent;
+            &:focus {
+                outline: none;
+                border-bottom-color: var(--rule-color);
+            }
+        }
         button {
             &.cancel {
                 margin-top: 1rem;
@@ -146,6 +204,106 @@ button {
                 &::after {
                     content: '+';
                 }
+            }
+        }
+    }
+}
+
+dialog {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    background-color: transparent;
+    div:not(.background) {
+        @extend %rounded;
+        border: none;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: transparent;
+        transform: translateY(-50%);
+        border: 0 solid var(--border-color);
+        transition: border-width 0.5s ease-in-out 0.1s;
+    }
+    .background {
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: opacity 0.3s linear, background-color 0.3s linear, backdrop-filter 0.3s linear;
+        background-color: transparent;
+        backdrop-filter: none;
+    }
+    button {
+        cursor: pointer;
+        font-size: 0;
+        min-height: 0;
+        max-width: 40px;
+        max-height: 40px;
+        height: auto;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        border-bottom: 0 solid var(--border-color);
+        transition: border-bottom-width 0.5s ease-out 0.1s;
+        &::after {
+            position: relative;
+            left: 40px;
+            content: '+';
+            color: transparent;
+            transition: font-size 0.5s ease-in-out 0.1s;
+        }
+        * {
+            font-size: 0;
+            width: 100%;
+            max-height: 100%;
+            transition: font-size 0.5s ease-in-out 0.1s;
+            float: right;
+        }
+        svg {
+            height: 0;
+            transition: height 0.5s ease-in-out 0.1s, transform 0.5s ease-in-out 0.1s;
+            transform: none;
+        }
+        &:first-of-type {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        &:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+    &.active {
+        div:not(.background) {
+            border-width: 1px;
+        }
+        .background {
+            cursor: pointer;
+            pointer-events: auto;
+            background-color: var(--border-color);
+            opacity: 0.6;
+            backdrop-filter: blur(5px) grayscale(50%);
+        }
+        button {
+            &::after {
+                font-size: 40px;
+            }
+            &:not(:last-of-type) {
+                border-bottom-width: 1px;
+            }
+            * {
+                font-size: 40px;
+            }
+            svg {
+                height: 30px;
+                transition: height 0.5s ease-in-out 0.1s;
+                fill: var(--text-color);
+                transform: translateY(5px);
             }
         }
     }
